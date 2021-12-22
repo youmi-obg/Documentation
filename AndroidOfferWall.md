@@ -4,7 +4,7 @@
 
 - [Sign Up developer account](#Sign-Up-developer-account)
 - [Postback Configuration](#Postback-Configuration)
-- [User's currency exchange and exchange ratio Configuration](#User's-currency-exchange-and-exchange-ratio-Configuration)
+- [User's currency exchange and exchange ratio Configuration](#users-currency-exchange-and-exchange-ratio-configuration)
 - [Android SDK Docking](#Android-SDK-Docking)
 
 ## Sign Up developer account
