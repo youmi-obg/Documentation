@@ -9,7 +9,7 @@ Endpoint: http://ad.api.yyapi.net/v2/offline
 | app_id      | string | Y         | Identification key, available from our publisher website              |
 | page_size   | int    | N | Define the number of offers per page, page_size should be no greater than 10000 in case of request timeout             |
 | page        | int    | N | Define which page to fetch, starting from 1      |
-| payout_type | string  | N         | Filter offer payout_type: CPA / CPI / CPL |
+| payout_type | string  | N         | Filter offer payout_type: CPI / CPL |
 | os          | string  | N         | Filter offer by target OS: android / ios |
 | country     | string  | N         | Filter offer by target country, use `,` to separate multiple countries |
 | offer_ids     | string  | N         | Filter offer by target offers, use , to separate multiple offers |
@@ -39,7 +39,7 @@ Endpoint: http://ad.api.yyapi.net/v2/offline
 | store_rating        | string | The store (AppStore/GooglePlay) rating of the offer      |
 | size                | string | The size of the package               |
 | conversion_flow     | string | Publisher can get a conversion only if the user complete this conversion flow.|
-| payout_type         | string | CPI: This means the offer is from an app store.<br> CPA: This means user will be redirected to a web task.<br> CPL: This means the offer is paid for an explicit sign-up         |
+| payout_type         | string | CPI: This means the offer is from an app store.<br> CPL: This means the offer is paid for an explicit sign-up         |
 | mandatory_device    | map<string, bool>  | required device parameters if it's marked as "true", see tracking link macro for details, failing to pass required parameters would result in invalid click response |
 | stream_type            | string | The stream type of offer: APP / ADULT / SMARTLINK / SUBSCRIPTION |
 | category            | string | Advertising classification of Youmi, similar to Google Play |
