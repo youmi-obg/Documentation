@@ -33,6 +33,7 @@ Endpoint: https://api.mygo-free.com/v1/aff/offers
 | os | Target os: android / ios | string |
 | countries | Targeting countries of offer | array |
 | os_version | Targeting countries of os version | string |
+| kpi | The KPI description of the offer | string |
 
 
 ## Other Resonse Parameter
@@ -74,7 +75,8 @@ GET https://api.mygo-free.com/v1/aff/offers?app_id=265b244af438f5833ce0a25fc45a6
 				"NL",
 				"QA"
 			],
-			"os_version": ""
+			"os_version": "",
+			"kpi": "daily click cap:10000<p>If Event of Deliverables is Free trial or install , Monthly conversion ratio from Free Trial Events to Subscription &nbsp;Event Shall be at least 10% in respect to each OS</p>"
 		}]
 	}
 }
