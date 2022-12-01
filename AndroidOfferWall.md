@@ -6,6 +6,7 @@
 - [Postback Configuration](#Postback-Configuration)
 - [User's currency exchange and exchange ratio Configuration](#users-currency-exchange-and-exchange-ratio-configuration)
 - [Android SDK Docking](#Android-SDK-Docking)
+- [ICON of SDK advertising space](#ICON-of-SDK-advertising-space)
 
 ## Sign Up developer account
 
@@ -146,3 +147,7 @@ Email: mkt@youmi.net
 Precautions
 
 When enabling the SDK,  userId(User's unique id,) is mandatory . The user ID can be used for settlement, the related parameter is {aff_sub} in postback ,which can be fix fired to developer。
+
+## ICON of SDK advertising space
+720 * 720 ICON
+![image-20211222102751940](./images/app_icon.png)

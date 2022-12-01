@@ -6,6 +6,7 @@
 - [设置Postback](#设置Postback)
 - [配置用户兑换的货币以及兑换比例](#配置用户兑换的货币以及兑换比例)
 - [SDK对接](#SDK对接)
+- [SDK广告位ICON](#SDK广告位ICON)
 
 ## 注册开发者账号
 
@@ -154,3 +155,9 @@ Email: mkt@youmi.net
 
 ### 注意事项：
 启用SDK的时候时候需要带上用户的唯一id，userId。用户ID之后可用于结算，在Postback配置可以配置{aff_sub}给开发者回传。
+
+## SDK广告位ICON
+
+提供720*720的ICON
+
+![image-20211222102751940](./images/app_icon.png)
