@@ -44,6 +44,17 @@ Endpoint: http://ad.api.yyapi.net/v2/offline
 | stream_type            | string | The stream type of offer: APP / ADULT / SMARTLINK / SUBSCRIPTION |
 | category            | string | Advertising classification of Youmi, similar to Google Play |
 | task_description_for_user            | string | Task description for user |
+| events            | array | The events of the offer|
+
+
+
+#### Events
+| Parameter           | Type   | Description          |
+|---------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| event_name            | string | one of "register","first_successful_login","deposit","level_achieved","install","subscribe","purchase","order","add_to_cart","video_stream","kyc","rejected","retention","retention_2","leads","other" |
+| event_type            | string | "Settlement" or "Record"|
+
+
 ## Example
 
 ```
@@ -111,7 +122,21 @@ GET http://ad.api.yyapi.net/v2/offline?app_id=c46b362886e42385d30c83d76abc3c51&p
             "category": "APP",
             "task_description_for_user": {
                 "en": "1. Download and Install App\n2. Create an account\n3. Open the App and play 15s at least"
-            }
+            },
+            "events": [
+                {
+                "event_name": "deposit",
+                "event_type": "Record"
+                },
+                {
+                "event_name": "order",
+                "event_type": "Record"
+                },
+                {
+                "event_name": "register",
+                "event_type": "Settlement"
+                }
+            ]
         }
     ]
 }
