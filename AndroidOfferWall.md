@@ -79,7 +79,7 @@ allprojects {
 2. Add Youmi Offer Wall SDK dependency to app’s build.gradle
 ```
 dependencies {
-    implementation 'io.github.youmi-obg:offerswall:1.7.0'
+    implementation 'io.github.youmi-obg:offerswall:1.8.0'
 }
 ```
 
@@ -128,7 +128,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        YoumiOffersWallSdk.init(this,"your_aid")
+        YoumiOffersWallSdk.getInstance().init(this,"your_aid")
     }
  }
 ```
@@ -136,7 +136,7 @@ class MyApplication : Application() {
 6. Add YoumiOffersWallSdk.startOffersWall(context, userId) to where it start the SDK offer wall. context is an instance of the Context class; userId is String type, and userId is the unique ID of your APP’s user.
 ```
 btn_test.setOnClickListener {
-    YoumiOffersWallSdk.startOffersWall(context,"userId")
+    YoumiOffersWallSdk.getInstance().startOffersWall(context,"userId")
 }
 ```
 
