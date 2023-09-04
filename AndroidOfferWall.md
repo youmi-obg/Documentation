@@ -79,7 +79,7 @@ allprojects {
 2. Add Youmi Offer Wall SDK dependency to app’s build.gradle
 ```
 dependencies {
-    implementation 'io.github.youmi-obg:offerswall:2.0.0'
+    implementation 'io.github.youmi-obg:offerswall:2.2.0'
 }
 ```
 
