@@ -6,8 +6,6 @@
 ## API For Network 
 - [Offline API](https://github.com/youmi-obg/Documentation/blob/main/NetworkOfflineAPI.md)
 - [Online API](https://github.com/youmi-obg/Documentation/blob/main/NetworkOnlineAPI.md)
-## JS Tag
-- [Js Report API](https://github.com/youmi-obg/Documentation/blob/main/JsReportAPI.md)
 ## Offer Test
 - [LinkTrace API](https://github.com/youmi-obg/Documentation/blob/main/LinkTraceAPI.md)
 
