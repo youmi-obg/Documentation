@@ -45,7 +45,5 @@ btn_test.setOnClickListener {
 
 5.SDK广告墙的启动方式，（Fragment的打开方式），添加代码 YoumiMainFragment fragment = YoumiMainFragment.newInstance("userId"); context为Context类的实例，userId为String类型，userId为该APP用户的唯一Id （userId非必传参数，没有userId可传空字符串）
 ```
-btn_test.setOnClickListener {
-    YoumiMainFragment fragment = YoumiMainFragment.newInstance("userId");
-}
+ YoumiMainFragment fragment = YoumiMainFragment.newInstance("userId");
 ```
