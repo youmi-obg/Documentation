@@ -80,7 +80,7 @@ allprojects {
 
 ```
 dependencies {
-    implementation 'io.github.youmi-obg:offerswall:2.2.0'
+    implementation 'io.github.youmi-obg:offerswall:2.5.0'
 }
 ```
 
