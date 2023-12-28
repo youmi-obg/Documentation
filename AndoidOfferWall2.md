@@ -18,7 +18,7 @@ allprojects {
 2.在app目录下的build.gradle中引入SDK库
 ```
 dependencies {
-    implementation 'io.github.youmi-obg:new-offerswall:1.1.0'
+    implementation 'io.github.youmi-obg:new-offerswall:1.2.0'
 }
 ```
 
