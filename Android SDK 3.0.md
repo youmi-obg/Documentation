@@ -31,7 +31,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        YoumiOffersWallSdk.getInstance().init(this,"your_APPID")
+        YoumiOffersSdk.getInstance().init(this,"your_APPID")
     }
  }
  ```
@@ -39,7 +39,7 @@ class MyApplication : Application() {
 4.SDK广告墙的启动方式，在需要跳转到SDK的地方（Activity的打开方式），添加代码 YoumiOffersSdk.getInstance().startOffersWall(context，userId) context为Context类的实例，userId为String类型，userId为该APP用户的唯一Id （userId非必传参数，没有userId可传空字符串）
 ```
 btn_test.setOnClickListener {
-    YoumiOffersWallSdk.getInstance().startOffersWall(context,"userId")
+    YoumiOffersSdk.getInstance().startOffersWall(context,"userId")
 }
 ```
 
