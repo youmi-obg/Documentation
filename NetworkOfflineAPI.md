@@ -51,7 +51,7 @@ Endpoint: http://ad.api.yyapi.net/v2/offline
 #### Events
 | Parameter           | Type   | Description          |
 |---------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| event_name            | string | one of "register","first_successful_login","deposit","level_achieved","install","subscribe","purchase","order","add_to_cart","video_stream","kyc","rejected","retention","retention_2","leads","other" |
+| event_name            | string | one of "register","first_successful_login","deposit","level_achieved","install","subscribe","purchase","order","add_to_cart","video_stream","kyc","rejected","retention","retention_2","leads","cpd","gameplay","loan_apply","loan_approved","ftd","other" |
 | event_type            | string | "Settlement" or "Record"|
 
 
