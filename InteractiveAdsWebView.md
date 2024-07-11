@@ -14,8 +14,8 @@ In `AndroidManifest.xml`, add the configuration to the `application` node to sup
 
 ```xml
 <application
-    android:usesCleartextTraffic="true"
-    android:networkSecurityConfig="@xml/network_security_config">
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config">
 </application>
 ```
 
