@@ -1,16 +1,17 @@
-# SpinGo Android WebView Integration
 
-## 1. Add Internet Permission
+# 互动广告安卓WebView对接
 
-Add the internet permission in the `AndroidManifest.xml` manifest file:
+## 1. 添加网络权限
+
+在`AndroidManifest.xml`清单配置文件中添加网络权限：
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
 ```
 
-## 2. Configure WebView to Support http Links
+## 2. 配置WebView对http链接的支持
 
-In `AndroidManifest.xml`, add the configuration to the `application` node to support http links in WebView:
+在`AndroidManifest.xml`中`application`节点添加配置WebView对http链接的支持
 
 ```xml
 <application
@@ -19,7 +20,7 @@ In `AndroidManifest.xml`, add the configuration to the `application` node to sup
 </application>
 ```
 
-`network_security_config`:
+### `network_security_config`：
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -28,9 +29,9 @@ In `AndroidManifest.xml`, add the configuration to the `application` node to sup
 </network-security-config>
 ```
 
-## 3. Visibility Configuration for Android 11 and Above
+## 3. 安卓11及以上版本的可见性配置
 
-For Android target versions 30 and above (Android 11 and above), add package visibility configuration in `AndroidManifest.xml` because WebView might involve APK installation redirections to Google Play or a browser. Configure the following to obtain application installation information and perform third-party redirections:
+安卓目标版本为30及以上，也就是安卓11及以上，需要在`AndroidManifest.xml`中添加软件包可见性配置，因为WebView可能会涉及到apk安装跳转到Google Play或者浏览器中，需进行以下配置才能获取应用安装信息并进行三方跳转：
 
 ```xml
 <queries>
@@ -40,7 +41,7 @@ For Android target versions 30 and above (Android 11 and above), add package vis
 </queries>
 ```
 
-Or configure by package name:
+或者按包名配置：
 
 ```xml
 <queries>
@@ -49,23 +50,23 @@ Or configure by package name:
 </queries>
 ```
 
-## 4. Initialize WebView Configuration
+## 4. 初始化WebView配置
 
-Initialize WebView related configurations in the `Activity` where WebView is located, and set it according to the actual H5 situation:
+在WebView所在`Activity`中初始化WebView相关配置，可根据实际的H5情况进行设置：
 
 ```java
 WebSettings webSettings = webView.getSettings();
-webSettings.setJavaScriptEnabled(true); // Enable JS
-webSettings.setDomStorageEnabled(true); // Enable DOM storage API
-webSettings.setDatabaseEnabled(true); // Enable database storage API
-webSettings.setCacheMode(WebSettings.LOAD_DEFAULT); // Decide whether to fetch data from the network based on cache-control
-webSettings.setUseWideViewPort(true); // Adjust images to fit the WebView size
-webSettings.setLoadWithOverviewMode(true); // Scale to screen size
-webSettings.setLoadsImagesAutomatically(true); // Automatically load image resources
-webSettings.setDefaultTextEncodingName("utf-8"); // Set encoding format
-webSettings.setSupportZoom(true); // Support zooming using screen controls or gestures
-webSettings.setBuiltInZoomControls(true); // Use built-in zoom mechanisms
-webSettings.setDisplayZoomControls(false); // Do not display screen zoom controls
+webSettings.setJavaScriptEnabled(true); // 支持js
+webSettings.setDomStorageEnabled(true); // 开启dom storage api功能
+webSettings.setDatabaseEnabled(true); // 开启database storage api功能
+webSettings.setCacheMode(WebSettings.LOAD_DEFAULT); // 根据cache-control决定是否从网络上取数据
+webSettings.setUseWideViewPort(true); // 将图片调整到适合webview的大小
+webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
+webSettings.setLoadsImagesAutomatically(true); // 自动加载图片资源
+webSettings.setDefaultTextEncodingName("utf-8"); // 设置编码格式
+webSettings.setSupportZoom(true); // 支持使用屏幕控件或手势进行缩放
+webSettings.setBuiltInZoomControls(true); // 使用其内置的变焦机制
+webSettings.setDisplayZoomControls(false); // 不显示屏幕缩放控件
 
 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
     webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
@@ -81,7 +82,7 @@ webSettings.setUserAgentString(String.format(
 ));
 ```
 
-## 5. Set APK Download Listener for WebView
+## 5. WebView设置APK下载监听
 
 ```java
 webView.setDownloadListener((url, userAgent, contentDisposition, mimetype, contentLength) -> {
@@ -96,9 +97,9 @@ webView.setDownloadListener((url, userAgent, contentDisposition, mimetype, conte
 });
 ```
 
-## 6. Set WebViewClient
+## 6. 设置WebViewClient
 
-Override the `shouldOverrideUrlLoading()` method to get the URL based on redirection, and handle different domain names or protocol headers/prefixes, such as redirecting to GP, browser, etc.:
+重写`shouldOverrideUrlLoading()`方法，根据重定向得到url，判断特定域名或协议头/前缀执行不同的处理，比如跳转到GP，浏览器等：
 
 ```java
 webView.setWebViewClient(new WebViewClient() {
@@ -132,9 +133,9 @@ webView.setWebViewClient(new WebViewClient() {
 });
 ```
 
-## 7. Add JavaScriptInterface Android Object
+## 7. 添加JavaScriptInterface安卓对象
 
-Support JS calling Android methods:
+支持JS进行安卓方法调用：
 
 ```java
 String nameSpace = "android";
@@ -231,9 +232,9 @@ private String getDefaultBrowser() {
 }
 ```
 
-## 8. Support WebView Web Page Back Navigation
+## 8. 支持WebView网页后退
 
-Please support web page back navigation instead of directly closing the page:
+请支持网页的后退而不是直接关闭页面：
 
 ```java
 @Override
@@ -250,17 +251,15 @@ public void onBackPressed() {
 }
 ```
 
-## 9. Load URL
+## 9. 加载URL
 
 ```java
 webView.loadUrl(url);
 ```
 
-## 10. Note: Demo App Instructions (see [SpinGo Demo](https://github.com/youmi-obg/Documentation/blob/main/AdWebViewDemo))
-
+## 10. 备注：Demo App使用说明(见 [SpinGo Demo](https://github.com/youmi-obg/Documentation/blob/main/AdWebViewDemo))
 <img src="./images/AdWebViewDemo2.png" alt="load ads" width="300" style="aspect-ratio: auto;">
 
-Support dynamic URL modification on the homepage: Enter/paste the WebView web page URL into the first input box. Also, support dynamically modifying the JS object name agreed with various interactive advertising platforms (corresponding to step 7). If not filled or handled, the default value is `android`. After entering the URL correctly, click the button to jump to the interface that loads WebView and display it.
+在首页界面中支持url动态修改：输入/复制粘贴WebView网页url到第一行输入框，还有支持动态修改与各互动广告平台协议好的JS对象名（对应步骤7），不填或者不处理则默认值为`android`，url输入无误后点击按钮跳转到加载WebView的界面并显示。
 
 <img src="./images/AdWebViewDemo.png" alt="load ads" width="300" style="aspect-ratio: auto;">
-
