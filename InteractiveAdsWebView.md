@@ -258,6 +258,8 @@ webView.loadUrl(url);
 ```
 
 ## 10. 备注：Demo App使用说明(见 [SpinGo Demo](https://github.com/youmi-obg/Documentation/blob/main/AdWebViewDemo))
-![load ads](./images/AdWebViewDemo2.png)
+<img src="./images/AdWebViewDemo2.png" alt="load ads" width="300" style="aspect-ratio: auto;">
+
 在首页界面中支持url动态修改：输入/复制粘贴WebView网页url到第一行输入框，还有支持动态修改与各互动广告平台协议好的JS对象名（对应步骤7），不填或者不处理则默认值为`android`，url输入无误后点击按钮跳转到加载WebView的界面并显示。
-![load ads](./images/AdWebViewDemo.png)
+
+<img src="./images/AdWebViewDemo.png" alt="load ads" width="300" style="aspect-ratio: auto;">
