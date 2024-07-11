@@ -20,7 +20,7 @@
 </application>
 ```
 
-network_security_config：
+`network_security_config`：
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
