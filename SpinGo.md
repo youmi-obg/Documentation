@@ -1,17 +1,17 @@
-# SpinGo互动广告接入指南
+# SpinGo Interactive Advertising Integration Guide
 
-![SpinGo业务流程](https://github.com/youmi-obg/Documentation/raw/main/images/spingo.png)
+![SpinGo Business Process](https://github.com/youmi-obg/Documentation/raw/main/images/spingo.png)
 
-## 1. 接入方式
+## 1. Integration Method
 
-- SpinGo互动广告采用H5形式对接，适配各种形式的展示位置。我们为每个广告位提供一个H5链接，如" https://lp.spingomi.com/lp/spingo/c1.html?app_key={your_app_key}&advid={gaid} "，开发者伙伴仅需提供一个广告位，并填充链接中 {gaid} 谷歌广告id信息即可，点击广告位后在外部浏览器或app内webview打开相应的H5页面。
-- 其中webview形式接入建议参考 [互动广告安卓WebView对接](https://github.com/youmi-obg/Documentation/blob/main/InteractiveAdsWebView_cn.md) 进行调整，以兼容各种广告跳转场景
+- SpinGo interactive advertising integrates in H5 format, suitable for various display positions. We provide an H5 link for each ad space, such as "https://lp.spingomi.com/lp/spingo/c1.html?app_key={your_app_key}&advid={gaid}". Developer partners only need to provide an ad space and fill in the {gaid} Google Ads ID in the link. Once clicked, the ad space will open the corresponding H5 page in an external browser or app's webview.
+- For the webview integration, it's recommended to refer to the [Interactive Ads Android WebView Integration](https://github.com/youmi-obg/Documentation/blob/main/InteractiveAdsWebView_cn.md) for adjustments to accommodate various ad jump scenarios.
 
-## 2. 广告位选择
+## 2. Ad Space Selection
 
-- 互动广告除了能以开屏、插屏、Banner、信息流等常规形式展现外，还可在各种非标广告位进行展现，如悬浮ICON、推送消息、Tab功能入口、签到弹窗等，其中能吸引用户主动点击的广告位更为推荐，如悬浮ICON，Banner等广告位，eCPM相比其他广告位整体也会更高些
+- Interactive ads can be displayed in regular formats such as splash screens, interstitials, banners, and news feeds, as well as in various non-standard ad spaces, such as floating icons, push notifications, tab function entries, and sign-in pop-ups. Ad spaces that can attract users to click, such as floating icons and banners, are particularly recommended, as the eCPM for these ad spaces is generally higher than for others.
 
-## 3. 数据展示
+## 3. Data Display
 
-对接上线后，可在开发者后台（https://offers.youmi.net/snapshot） 查看相关展示收入数据
-![开发者后台](https://github.com/youmi-obg/Documentation/raw/main/images/backend2.png)
+- After the integration is live, relevant revenue data can be viewed in the developer backend at (https://offers.youmi.net/snapshot).
+![Developer Backend](https://github.com/youmi-obg/Documentation/raw/main/images/backend.png)
