@@ -7,7 +7,7 @@
 ## 1. 接入方式
 
 - SpinGo互动广告采用H5形式对接，适配各种形式的展示位置。我们为每个广告位提供一个H5链接，如" https://lp.spingomi.com/lp/spingo/c1.html?app_key={your_app_key}&advid={gaid} "，开发者伙伴仅需提供一个广告位，并填充链接中 {gaid} 谷歌广告id信息即可，点击广告位后在外部浏览器或app内webview打开相应的H5页面。
-- 其中webview形式接入建议参考 [互动广告安卓WebView对接](https://github.com/youmi-obg/Documentation/blob/main/InteractiveAdsWebView_cn.md) 进行调整，以兼容各种广告跳转场景
+- 其中webview形式接入建议参考 [互动广告安卓WebView对接](https://github.com/youmi-obg/Documentation/raw/main/images/spingo.png) 进行调整，以兼容各种广告跳转场景
 
 ## 2. 广告位选择
 
@@ -16,4 +16,4 @@
 ## 3. 数据展示
 
 对接上线后，可在开发者后台（https://offers.youmi.net/snapshot）查看相关展示收入数据
-![开发者后台](https://cdn-creative.gofree.cc/2410/3a/e7/3ae70cf62152c8d8668fd22e8419b587.png)
+![开发者后台](https://github.com/youmi-obg/Documentation/raw/main/images/backend.png)
