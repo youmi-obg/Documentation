@@ -14,4 +14,4 @@
 ## 3. Data Display
 
 - After the integration is live, relevant revenue data can be viewed in the developer backend at (https://offers.youmi.net/snapshot).
-![Developer Backend](https://github.com/youmi-obg/Documentation/raw/main/images/backend.png)
+![Developer Backend](https://github.com/youmi-obg/Documentation/raw/main/images/backend2.png)
