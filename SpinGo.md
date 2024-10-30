@@ -13,5 +13,5 @@
 
 ## 3. 数据展示
 
-对接上线后，可在开发者后台（https://offers.youmi.net/snapshot）查看相关展示收入数据
+对接上线后，可在开发者后台（https://offers.youmi.net/snapshot） 查看相关展示收入数据
 ![开发者后台](https://github.com/youmi-obg/Documentation/raw/main/images/backend.png)
