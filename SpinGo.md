@@ -5,7 +5,7 @@
 ## 1. Integration Method
 
 - SpinGo interactive advertising integrates in H5 format, suitable for various display positions. We provide an H5 link for each ad space, such as "https://lp.spingomi.com/lp/spingo/c1.html?app_key={your_app_key}&advid={gaid}". Developer partners only need to provide an ad space and fill in the {gaid} Google Ads ID in the link. Once clicked, the ad space will open the corresponding H5 page in an external browser or app's webview.
-- For the webview integration, it's recommended to refer to the [Interactive Ads Android WebView Integration](https://github.com/youmi-obg/Documentation/blob/main/InteractiveAdsWebView_cn.md) for adjustments to accommodate various ad jump scenarios.
+- For the webview integration, it's recommended to refer to the [Interactive Ads Android WebView Integration](https://github.com/youmi-obg/Documentation/blob/main/InteractiveAdsWebView.md) for adjustments to accommodate various ad jump scenarios.
 
 ## 2. Ad Space Selection
 
