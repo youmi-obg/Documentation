@@ -32,7 +32,7 @@ dependencies:
         multiDexEnabled true
     }
 
- 6.在项目的android文件夹中app目录下的子目录io.flutter.plugins中的GeneratedPluginRegistrant文件注册插件：
+ 6.打开项目中的android模块，在项目的android文件夹中app目录下的子目录io.flutter.plugins中的GeneratedPluginRegistrant文件注册插件：
     
     @Keep
     public final class GeneratedPluginRegistrant {
@@ -49,6 +49,6 @@ dependencies:
   7.注册后项目sync now或rebuild，然后可以看到youmi_flutter_plugin module生成，在build.gradle(Module:youmi_flutter_plugin)中同步最新sdk版本：
      
      dependencies{
-         implementation 'io.github.youmi-obg:offerswall:2.7.3'
+         implementation 'io.github.youmi-obg:offerswall:2.7.4'
      }
 
