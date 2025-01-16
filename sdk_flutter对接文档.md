@@ -49,6 +49,6 @@ dependencies:
   7.注册后项目sync now或rebuild，然后可以看到youmi_flutter_plugin module生成，在build.gradle(Module:youmi_flutter_plugin)中同步最新sdk版本：
      
      dependencies{
-         implementation 'io.github.youmi-obg:offerswall:2.7.4'
+         implementation 'io.github.youmi-obg:offerswall:2.7.5'
      }
 
