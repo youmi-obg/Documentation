@@ -135,7 +135,7 @@ webView.setWebViewClient(new WebViewClient() {
 
 ## 7. 添加JavaScriptInterface安卓对象
 
-支持JS进行安卓方法调用：
+支持JS进行安卓方法调用，其中**namespace定义后需同步互动广告平台运营配置**后生效：
 
 ```java
 String nameSpace = "android";
