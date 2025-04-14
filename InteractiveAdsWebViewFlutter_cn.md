@@ -266,7 +266,7 @@ controller.addJavaScriptHandler(
 
 参考步骤5中 `.addJavaScriptChannel("openBrowser")` 配置。
 
-## 8. 清除WebView缓存资源
+## 8. 界面销毁时清除WebView缓存资源
 
 ### InAppWebView：
 
