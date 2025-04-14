@@ -134,7 +134,7 @@ webView.setWebViewClient(new WebViewClient() {
 
 ## 7. Add JavaScriptInterface Android Object
 
-Support JS calling Android methods:
+Support calling Android native methods via JavaScript. **The namespace must be defined and synchronized with the interactive ad platform's operations team before it can take effect.**
 
 ```java
 String nameSpace = "android";
