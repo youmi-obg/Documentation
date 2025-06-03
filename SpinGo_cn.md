@@ -8,7 +8,7 @@
 - 其中 WebView 形式接入建议参考以下文档进行调整，以兼容各种广告跳转场景：
   - [互动广告安卓WebView对接](https://github.com/youmi-obg/Documentation/blob/main/InteractiveAdsWebView_cn.md)
   - [互动广告安卓Flutter WebView对接](https://github.com/youmi-obg/Documentation/blob/main/InteractiveAdsWebViewFlutter_cn.md)
-  - [互动广告IOS WebView对接](https://github.com/youmi-obg/Documentation/blob/main/AdWebviewIOSDemo/README.md))
+  - [互动广告IOS WebView对接](https://github.com/youmi-obg/Documentation/blob/main/AdWebviewIOSDemo/README.md)
 
 ## 2. 广告位选择
 
