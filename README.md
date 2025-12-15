@@ -5,7 +5,7 @@
 - [API For Developer(Server)](https://github.com/youmi-obg/Documentation/blob/main/SDKAPI.md)
 ## API For Network 
 - [Offline API](https://github.com/youmi-obg/Documentation/blob/main/NetworkOfflineAPI.md)
-- [Online API](https://github.com/youmi-obg/Documentation/blob/main/NetworkOnlineAPI.md)
+- [Online API(Unpublished)](https://github.com/youmi-obg/Documentation/blob/main/NetworkOnlineAPI.md)
 ## Offer Test
-- [LinkTrace API](https://github.com/youmi-obg/Documentation/blob/main/LinkTraceAPI.md)
+- [LinkTrace API(Unpublished)](https://github.com/youmi-obg/Documentation/blob/main/LinkTraceAPI.md)
 
