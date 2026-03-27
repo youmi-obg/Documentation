@@ -1,5 +1,8 @@
+---
+title: 互动广告 Android WebView 对接
+---
 
-# 互动广告安卓WebView对接
+# 互动广告 Android WebView 对接
 
 ## 1. 添加网络权限
 
@@ -257,9 +260,10 @@ public void onBackPressed() {
 webView.loadUrl(url);
 ```
 
-## 10. 备注：Demo App使用说明(见 [SpinGo Demo](https://github.com/youmi-obg/Documentation/blob/main/AdWebViewDemo))
-<img src="./images/AdWebViewDemo2.png" alt="load ads" width="300" style="aspect-ratio: auto;">
+## 10. 备注：Demo App 使用说明（见 [SpinGo Demo](https://github.com/youmi-obg/Documentation/blob/main/AdWebViewDemo)）
 
-在首页界面中支持url动态修改：输入/复制粘贴WebView网页url到第一行输入框，还有支持动态修改与各互动广告平台协议好的JS对象名（对应步骤7），不填或者不处理则默认值为`android`，url输入无误后点击按钮跳转到加载WebView的界面并显示。
+![load ads](../images/AdWebViewDemo2.png)
 
-<img src="./images/AdWebViewDemo.png" alt="load ads" width="300" style="aspect-ratio: auto;">
+在首页界面中支持 URL 动态修改：输入/复制粘贴 WebView 网页 URL 到第一行输入框，还有支持动态修改与各互动广告平台协议好的 JS 对象名（对应步骤 7），不填或者不处理则默认值为 `android`，URL 输入无误后点击按钮跳转到加载 WebView 的界面并显示。
+
+![load ads](../images/AdWebViewDemo.png)

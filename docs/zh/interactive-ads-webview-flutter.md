@@ -1,4 +1,8 @@
-# 互动广告Flutter WebView对接
+---
+title: 互动广告 Flutter WebView 对接
+---
+
+# 互动广告 Flutter WebView 对接
 
 ## 1. 添加网络权限（Android）
 
@@ -289,7 +293,8 @@ void dispose() {
 }
 ```
 
-## 9. Demo App使用说明（见 [SpinGo Demo](https://github.com/youmi-obg/Documentation/blob/main/AdWebViewFlutterDemo)）
-<img src="./images/AdWebViewDemoFlutter.png" alt="load ads" width="300" style="aspect-ratio: auto;">
-在首页界面中支持 URL 动态修改：  
-输入/复制粘贴 WebView 网页 URL 到输入框，URL 输入无误后点击按钮（分别由 inappwebview 和 webview_flutter 插件实现）跳转到加载 WebView 的界面并显示页面内容。
+## 9. Demo App 使用说明（见 [SpinGo Demo](https://github.com/youmi-obg/Documentation/blob/main/AdWebViewFlutterDemo)）
+
+![load ads](../images/AdWebViewDemoFlutter.png)
+
+在首页界面中支持 URL 动态修改：输入/复制粘贴 WebView 网页 URL 到输入框，URL 输入无误后点击按钮（分别由 inappwebview 和 webview_flutter 插件实现）跳转到加载 WebView 的界面并显示页面内容。

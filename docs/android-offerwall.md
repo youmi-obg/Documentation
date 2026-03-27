@@ -1,20 +1,31 @@
+---
+title: How to integrate SDK
+---
+
 # How to integrate SDK
 
- ## Contents
+## Contents
 
-- [Sign Up developer account](#Sign-Up-developer-account)
-- [Postback Configuration](#Postback-Configuration)
-- [User's currency exchange and exchange ratio Configuration](#users-currency-exchange-and-exchange-ratio-configuration)
-- [Android SDK Docking](#Android-SDK-Docking)
-- [ICON of SDK advertising space](#ICON-of-SDK-advertising-space)
+- [How to integrate SDK](#how-to-integrate-sdk)
+  - [Contents](#contents)
+  - [Sign Up developer account](#sign-up-developer-account)
+  - [Postback Configuration](#postback-configuration)
+  - [User's currency exchange and exchange ratio Configuration](#users-currency-exchange-and-exchange-ratio-configuration)
+  - [Android SDK Docking](#android-sdk-docking)
+    - [Integration Documentation:](#integration-documentation)
+    - [Precautions:](#precautions)
+  - [ICON of SDK advertising space](#icon-of-sdk-advertising-space)
 
 ## Sign Up developer account
 
 1. Register a developer account in the official website of Youmi Overseas. Registration link: https://offers.youmi.net/register.After completing the registration content, please click the activation link in the registered email address to activate the account (it may be in the spam box);
 
-2. After activating the account, please contact BD for account review.![image-20211222102751940](./images/Signup.png)
+2. After activating the account, please contact BD for account review.
+
+![Signup](../images/Signup.png)
 
 ## Postback Configuration
+
 1. We will send callback request via HTTP GET method when conversion happens, and will retry when request fails (HTTP response code 5XX). In order to avoid receiving the same callbacks repeatedly, developers need to configure parameters on postback to receive the order_id returned by us.
 
 2. Callback parameter description
@@ -26,41 +37,47 @@
 | {package}  | The package name of this offer                               |
 | {payout}   | The settled price (in USD) for this conversion               |
 | {gaid}     | Google Advertising ID                                        |
-| {aff_sub}  | Developer’s user ID, the unique user ID passed by the developer |
+| {aff_sub}  | Developer's user ID, the unique user ID passed by the developer |
 | {aff_sub2} | payout* Currency Multiplier (Configured in the monetization platform for publishers). It is also the amount be settled with the user |
 
-Where to configure postback：
+3. Where to configure postback:
 
-[Monetization platform for publishers](https://offers.youmi.net/channel)  - Tool - API![image-20211222102751940](./images/configPostback.png)
+[Monetization platform for publishers](https://offers.youmi.net/channel) - Tool - API
+
+![configPostback](../images/configPostback.png)
 
 ## User's currency exchange and exchange ratio Configuration
+
 Developers should configure the currency and currency conversion ratio before using the SDK, otherwise it will affect the normal test.
+
 | Parameter              | Description                                          |
 | ---------------------- | ---------------------------------------------------- |
 | Currency Name Singular | Name of the point in your app,example:point,coin etc |
 | Currency Name Plural   | Plural of Currency Name,example:points,coins etc     |
 | Currency Multiplier    | The exchange ratio                                   |
 
-How to set up ：
+Example:
 ```
-first，you should define how many points for 1 dollar, such as 2000 points for 1 dollar, and if you want to earn 30% of it and provide 70% to user, that is : 2000*70%=1400,than fill 1400 in the box
-Set as follows
-Currency Name Singular：Point
-Currency Name Plural：Points
-Currency Multiplier：1400 
+first, you should define how many points for 1 dollar, such as 2000 points for 1 dollar, and if you want to earn 30% of it and provide 70% to user, that is: 2000*70%=1400, than fill 1400 in the box
+Set as follows:
+Currency Name Singular: Point
+Currency Name Plural: Points
+Currency Multiplier: 1400
 ```
 
 Where to set up:
 
-Login your developer account on the official website of Youmi Overseas
+[Monetization platform for publishers](https://offers.youmi.net/channel) - Tool - API
 
-Click Tool on Left navigation bar
+![configCurrency](../images/configCurrency.png)
 
-Click API-SDK Setting![image-20211222102751940](./images/configCurrency.png)
+## Android SDK Docking
 
-## Android SDK Docking 
+### Integration Documentation:
+
 1. Add Maven repository to build.gradle in the root directory of your project
-```
+
+```gradle
 buildscript {
     repositories {
         google()
@@ -76,15 +93,17 @@ allprojects {
 }
 ```
 
-2. Add Youmi Offer Wall SDK dependency to app’s build.gradle
-```
+2. Add Youmi Offer Wall SDK dependency to app's build.gradle
+
+```gradle
 dependencies {
     implementation 'io.github.youmi-obg:offerswall:2.7.6'
 }
 ```
 
-3. Add multiDexEnabled true to defaultConfig in app’s build.gradle 
-```
+3. Add multiDexEnabled true to defaultConfig in app's build.gradle
+
+```gradle
 defaultConfig {
     applicationId "com.youmi.sdk.demo"
     minSdk 16
@@ -98,7 +117,8 @@ defaultConfig {
 ```
 
 4. Add tools:replace="android:theme" to <application> in AndroidManifest.xml
-```
+
+```xml
 <application
     android:name=".MyApp"
     android:allowBackup="true"
@@ -120,34 +140,49 @@ defaultConfig {
 </application>
 ```
 
-5. Add YoumiOffersWallSdk.init(this,"your_aid") to the onCreate() method in the Application class of the project. “your_aid” is your account ID registered in Youmi. “your_aid” can not be empty, otherwise the SDK will not work.
+5. SDK integration method, in the onCreate() method of the project's Application class:
 
-```
+   Use YoumiOffersWallSdk.getInstance().setOfferWallCallback { s, l -> } to register local callback,
+   s is the uid passed by third party, l is the points obtained after each successful task completion. (You don't need to add this function if you don't need local callback)
+
+   Use YoumiOffersWallSdk.getInstance().init(this,"your_aid")
+   "your_aid" is the channel aid after you successfully register on Youmi official website. This aid cannot be empty, otherwise the SDK function cannot be used normally.
+
+```kotlin
 class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        YoumiOffersWallSdk.getInstance().setOfferWallCallback { s, l ->
+
+        }
 
         YoumiOffersWallSdk.getInstance().init(this,"your_aid")
     }
  }
 ```
 
-6. Add YoumiOffersWallSdk.startOffersWall(context, userId) to where it start the SDK offer wall. context is an instance of the Context class; userId is String type, and userId is the unique ID of your APP’s user.
-```
+6. SDK offer wall startup method, where you need to jump to the SDK, add code
+   YoumiOffersWallSdk.getInstance().startOffersWall(context, userId)
+   context is an instance of Context class, userId is String type, userId is the unique ID of the APP user
+
+```kotlin
 btn_test.setOnClickListener {
     YoumiOffersWallSdk.getInstance().startOffersWall(context,"userId")
 }
 ```
 
-Any questions about SDK integrations, feel free to contact us.
-Email: mkt@youmi.net
-‪WhatsApp: +8618028539642
+If you have any questions about the SDK, please contact us:
+- Email: mkt@youmi.net
+- WhatsApp: +86 180 2853 9642
 
-Precautions
+### Precautions:
 
-When enabling the SDK,  userId(User's unique id,) is mandatory . The user ID can be used for settlement, the related parameter is {aff_sub} in postback ,which can be fix fired to developer。
+When enabling the SDK, userId (User's unique id) is mandatory. The user ID can be used for settlement, the related parameter is {aff_sub} in postback, which can be fired back to developer.
 
 ## ICON of SDK advertising space
-720 * 720 ICON
-![image-20211222102751940](./images/app_icon.png)
+
+Provide 720*720 ICON
+
+<img src="../images/app_icon.png" alt="app_icon" width="200" />

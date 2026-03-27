@@ -1,3 +1,7 @@
+---
+title: SpinGo Android WebView Integration
+---
+
 # SpinGo Android WebView Integration
 
 ## 1. Add Internet Permission
@@ -19,7 +23,7 @@ In `AndroidManifest.xml`, add the configuration to the `application` node to sup
 </application>
 ```
 
-`network_security_config`:
+### `network_security_config`:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -258,9 +262,8 @@ webView.loadUrl(url);
 
 ## 10. Note: Demo App Instructions (see [SpinGo Demo](https://github.com/youmi-obg/Documentation/blob/main/AdWebViewDemo))
 
-<img src="./images/AdWebViewDemo2.png" alt="load ads" width="300" style="aspect-ratio: auto;">
+![load ads](../images/AdWebViewDemo2.png)
 
 Support dynamic URL modification on the homepage: Enter/paste the WebView web page URL into the first input box. Also, support dynamically modifying the JS object name agreed with various interactive advertising platforms (corresponding to step 7). If not filled or handled, the default value is `android`. After entering the URL correctly, click the button to jump to the interface that loads WebView and display it.
 
-<img src="./images/AdWebViewDemo.png" alt="load ads" width="300" style="aspect-ratio: auto;">
-
+![load ads](../images/AdWebViewDemo.png)

@@ -1,17 +1,24 @@
+---
+title: SpinGo Interactive Advertising Integration Guide
+---
+
 # SpinGo Interactive Advertising Integration Guide
 
-![SpinGo Business Process](https://github.com/youmi-obg/Documentation/raw/main/images/spingo2.png)
+![SpinGo Business Process](../images/spingo2.png)
 
 ## 1. Integration Method
 
-- SpinGo interactive advertising integrates in H5 format, suitable for various display positions. We provide an H5 link for each ad space, such as "https://lp.spingomi.com/lp/spingo/c1.html?app_key={your_app_key}&advid={gaid | idfa}". 
+- SpinGo interactive advertising integrates in H5 format, suitable for various display positions. We provide an H5 link for each ad space, such as "https://lp.spingomi.com/lp/spingo/c1.html?app_key={your_app_key}&advid={gaid | idfa}".
+
 Developer partners only need to provide an ad space and fill in the parameter in the link. Once clicked, the ad space will open the corresponding H5 page in an external browser or app's webview.
+
 Parameter rules:
   - Android traffic: pass advid={gaid} (Google Ads ID) in the link.
   - iOS traffic: pass advid={idfa} (Identifier for Advertising). If the channel cannot obtain the IDFA, the advid parameter is not required.
+
 - For WebView integration, it is recommended to refer to the following documentation for necessary adjustments to accommodate various ad jump scenarios:
-  - [Interactive Ads Android WebView Integration](https://github.com/youmi-obg/Documentation/blob/main/InteractiveAdsWebView.md)
-  - [Interactive Ads Flutter WebView Integration](https://github.com/youmi-obg/Documentation/blob/main/InteractiveAdsWebviewFlutter.md)
+  - [Interactive Ads Android WebView Integration](interactive-ads-webview.md)
+  - [Interactive Ads Flutter WebView Integration](interactive-ads-webview-flutter.md)
   - [Interactive Ads iOS WebView Integration](https://github.com/youmi-obg/Documentation/blob/main/AdWebviewIOSDemo/README.md)
 
 ## 2. Ad Space Selection
@@ -21,4 +28,5 @@ Parameter rules:
 ## 3. Data Display
 
 - After the integration is live, relevant revenue data can be viewed in the developer backend at (https://offers.youmi.net/snapshot).
-![Developer Backend](https://github.com/youmi-obg/Documentation/raw/main/images/backend5.png)
+
+![Developer Backend](../images/backend5.png)

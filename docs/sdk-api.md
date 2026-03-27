@@ -1,7 +1,10 @@
+---
+title: Server To Server Offer API For Publisher
+---
+
 # Server To Server Offer API For Publisher
 
 Endpoint: https://api.mygo-free.com/v1/aff/offers
-
 
 ## Request Parameter
 
@@ -35,8 +38,8 @@ Endpoint: https://api.mygo-free.com/v1/aff/offers
 | os_version | Targeting countries of os version | string |
 | kpi | The KPI description of the offer | string |
 
+## Other Response Parameter
 
-## Other Resonse Parameter
 | Parameter | Description | Type |
 | ---- | ---- | ---- |
 | p | Page | int |
@@ -45,9 +48,11 @@ Endpoint: https://api.mygo-free.com/v1/aff/offers
 
 ## Example
 
+```http
+GET https://api.mygo-free.com/v1/aff/offers?app_id=265b244af438f5833ce0a25fc45a6532&os=android&page_size=10&page=1
 ```
-GET https://api.mygo-free.com/v1/aff/offers?app_id=265b244af438f5833ce0a25fc45a6532&os=android&page_size=10&page=1  (only for test)
 
+```json
 {
 	"c": 0,
 	"d": {
@@ -81,5 +86,3 @@ GET https://api.mygo-free.com/v1/aff/offers?app_id=265b244af438f5833ce0a25fc45a6
 	}
 }
 ```
-
-
