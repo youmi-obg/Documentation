@@ -6,8 +6,6 @@ title: Youmi Documentation
 
 Welcome to the Youmi Overseas Ad SDK documentation!
 
-> 中文用户？[查看中文文档 →](zh/index.md)
-
 ## Quick Start
 
 Choose the product you need to integrate:
