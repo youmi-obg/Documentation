@@ -1,0 +1,85 @@
+[project]
+site_name = "Youmi Documentation"
+site_url = "https://youmi-obg.github.io/Documentation/"
+site_author = "Youmi"
+site_description = "Youmi Overseas Ad SDK Documentation"
+
+# Navigation configuration
+nav = [
+  { "Home" = "index.md"},
+  { "InteractiveAds (Spingo)" = [
+    { "SpinGo Integration" = "spingo.md" },
+    { "SpinGo Integration (中文)" = "zh/spingo.md" },
+    { "Android WebView" = "interactive-ads-webview.md" },
+    { "Android WebView (中文)" = "zh/interactive-ads-webview.md" },
+    { "Flutter WebView" = "interactive-ads-webview-flutter.md" },
+    { "Flutter WebView (中文)" = "zh/interactive-ads-webview-flutter.md" },
+    { "Demo For Android AdWebView" = "adwebview-demo-android.md" },
+    { "Demo For Android AdWebView (中文)" = "zh/adwebview-demo-android.md" },
+    { "Demo For Flutter AdWebView" = "adwebview-demo-flutter.md" },
+    { "Demo For Flutter AdWebView (中文)" = "zh/adwebview-demo-flutter.md" },
+    { "Demo For iOS AdWebView" = "adwebview-demo-ios.md" },
+    { "Demo For iOS AdWebView (中文)" = "zh/adwebview-demo-ios.md" }
+  ]},
+  { "Android OfferWall" = [
+    { "Android SDK Integration" = "android-offerwall.md" },
+    { "Android SDK Integration (中文)" = "zh/android-offerwall.md" },
+    { "Flutter SDK Integration" = "flutter-sdk.md" },
+    { "Flutter SDK Integration (中文)" = "zh/flutter-sdk.md" }
+  ]},
+  { "API For Network" = [
+    { "Offline API" = "network-offline-api.md" },
+    { "Offline API (中文)" = "zh/network-offline-api.md" },
+    { "Online API" = "network-online-api.md" },
+    { "Online API (中文)" = "zh/network-online-api.md" }
+  ]}
+]
+
+[project.theme]
+name = "material"
+language = "en"
+features = [
+    "navigation.tabs",
+    "navigation.sections",
+    "navigation.expand",
+    "navigation.path",
+    "navigation.indexes",
+    "search.suggest",
+    "search.highlight",
+    "content.code.copy",
+    "content.code.select",
+    "content.tabs.link"
+]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "indigo"
+accent = "indigo"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "indigo"
+accent = "indigo"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to light mode"
+
+[project.markdown_extensions]
+admonition = {}
+pymdownx.details = {}
+pymdownx.superfences = {}
+pymdownx.highlight = { anchor_linenums = true }
+pymdownx.inlinehilite = {}
+pymdownx.snippets = {}
+pymdownx.keys = {}
+attr_list = {}
+md_in_html = {}
+tables = {}
+toc = { permalink = true }
+pymdownx.emoji = { emoji_generator = "zensical.extensions.emoji.to_svg", emoji_index = "zensical.extensions.emoji.twemoji" }
+
+[project.plugins.search]
+lang = ["en", "zh"]
