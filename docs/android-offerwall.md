@@ -185,4 +185,4 @@ When enabling the SDK, userId (User's unique id) is mandatory. The user ID can b
 
 Provide 720*720 ICON
 
-<img src="./images/app_icon.png" alt="app_icon" width="200" />
+<img src="../images/app_icon.png" alt="app_icon" width="200" />
