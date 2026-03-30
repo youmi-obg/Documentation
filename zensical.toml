@@ -4,6 +4,8 @@ site_url = "https://youmi-obg.github.io/Documentation/"
 site_author = "Youmi"
 site_description = "Youmi Overseas Ad SDK Documentation"
 
+extra_css = ["stylesheets/extra.css"]
+
 # Navigation configuration
 nav = [
   { "Home" = "index.md"},
@@ -37,6 +39,7 @@ nav = [
 
 [project.theme]
 name = "material"
+variant = "modern"
 language = "en"
 features = [
     "navigation.tabs",

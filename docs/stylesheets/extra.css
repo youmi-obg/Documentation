@@ -1,0 +1,89 @@
+/* Reset test styles */
+body {
+  background: var(--md-default-bg-color) !important;
+}
+
+.md-typeset h1 {
+  color: var(--md-default-fg-color) !important;
+  font-size: var(--md-h1-size) !important;
+  background: transparent !important;
+}
+
+/* ============================================
+   Grid Cards - Bold Styling
+   ============================================ */
+
+/* Grid container */
+.md-typeset .grid.cards {
+  margin: 2rem 0 !important;
+}
+
+/* Cards list */
+.md-typeset .grid.cards > ul {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  gap: 1.5rem !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Each card item */
+.md-typeset .grid.cards > ul > li {
+  margin: 0 !important;
+}
+
+/* Card wrapper - add bold styles here */
+.md-typeset .grid.cards > ul > li {
+  background: linear-gradient(145deg, #ffffff 0%, #f0f4ff 100%) !important;
+  border: 4px solid #6366f1 !important;
+  border-radius: 20px !important;
+  padding: 1.5rem !important;
+  box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+  transform: translateY(-8px) !important;
+  border-color: #4f46e5 !important;
+  box-shadow: 0 20px 60px rgba(79, 70, 229, 0.4) !important;
+}
+
+/* Card title (first strong element) */
+.md-typeset .grid.cards > ul > li p:first-child strong {
+  font-size: 1.4rem !important;
+  font-weight: 900 !important;
+  color: #1e1b4b !important;
+}
+
+/* Card link button */
+.md-typeset .grid.cards > ul > li a {
+  display: inline-block !important;
+  margin-top: 1rem !important;
+  padding: 0.75rem 1.5rem !important;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+  color: white !important;
+  text-decoration: none !important;
+  border-radius: 10px !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4) !important;
+}
+
+.md-typeset .grid.cards > ul > li a:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.5) !important;
+}
+
+/* Dark mode */
+[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li {
+  background: linear-gradient(145deg, #1e1b4b 0%, #312e81 100%) !important;
+  border-color: #818cf8 !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li p:first-child strong {
+  color: #f1f5f9 !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li:hover {
+  border-color: #a5b4fc !important;
+}

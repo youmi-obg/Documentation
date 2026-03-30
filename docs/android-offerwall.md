@@ -22,7 +22,7 @@ title: How to integrate SDK
 
 2. After activating the account, please contact BD for account review.
 
-![Signup](../images/Signup.png)
+![Signup](./images/Signup.png)
 
 ## Postback Configuration
 
@@ -44,7 +44,7 @@ title: How to integrate SDK
 
 [Monetization platform for publishers](https://offers.youmi.net/channel) - Tool - API
 
-![configPostback](../images/configPostback.png)
+![configPostback](./images/configPostback.png)
 
 ## User's currency exchange and exchange ratio Configuration
 
@@ -69,7 +69,7 @@ Where to set up:
 
 [Monetization platform for publishers](https://offers.youmi.net/channel) - Tool - API
 
-![configCurrency](../images/configCurrency.png)
+![configCurrency](./images/configCurrency.png)
 
 ## Android SDK Docking
 
@@ -185,4 +185,4 @@ When enabling the SDK, userId (User's unique id) is mandatory. The user ID can b
 
 Provide 720*720 ICON
 
-<img src="../images/app_icon.png" alt="app_icon" width="200" />
+<img src="./images/app_icon.png" alt="app_icon" width="200" />

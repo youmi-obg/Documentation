@@ -8,13 +8,13 @@ title: 开发者对接 SDK 的具体步骤
 
 - [开发者对接 SDK 的具体步骤](#开发者对接-sdk-的具体步骤)
   - [目录](#目录)
-  - [注册开发者账号 {#sign-up-developer-account}](#注册开发者账号-sign-up-developer-account)
-  - [设置 Postback {#postback-configuration}](#设置-postback-postback-configuration)
-  - [配置用户兑换的货币以及兑换比例 {#users-currency-exchange-and-exchange-ratio-configuration}](#配置用户兑换的货币以及兑换比例-users-currency-exchange-and-exchange-ratio-configuration)
-  - [SDK 对接 {#android-sdk-docking}](#sdk-对接-android-sdk-docking)
+  - [注册开发者账号](#sign-up-developer-account)
+  - [设置 Postback](#postback-configuration)
+  - [配置用户兑换的货币以及兑换比例](#users-currency-exchange-and-exchange-ratio-configuration)
+  - [SDK 对接](#android-sdk-docking)
     - [对接文档：](#对接文档)
     - [注意事项：](#注意事项)
-  - [SDK 广告位 ICON {#icon-of-sdk-advertising-space}](#sdk-广告位-icon-icon-of-sdk-advertising-space)
+  - [SDK 广告位 ICON](#icon-of-sdk-advertising-space)
 
 ## 注册开发者账号 {#sign-up-developer-account}
 
