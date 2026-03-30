@@ -12,11 +12,11 @@ title: How to integrate SDK
   - [Postback Configuration](#postback-configuration)
   - [User's currency exchange and exchange ratio Configuration](#users-currency-exchange-and-exchange-ratio-configuration)
   - [Android SDK Docking](#android-sdk-docking)
-    - [Integration Documentation:](#integration-documentation)
-    - [Precautions:](#precautions)
+    - [Integration Documentation](#integration-documentation)
+    - [Precautions](#precautions)
   - [ICON of SDK advertising space](#icon-of-sdk-advertising-space)
 
-## Sign Up developer account
+## Sign Up developer account {#sign-up-developer-account}
 
 1. Register a developer account in the official website of Youmi Overseas. Registration link: https://offers.youmi.net/register.After completing the registration content, please click the activation link in the registered email address to activate the account (it may be in the spam box);
 
@@ -24,7 +24,7 @@ title: How to integrate SDK
 
 ![Signup](./images/Signup.png)
 
-## Postback Configuration
+## Postback Configuration {#postback-configuration}
 
 1. We will send callback request via HTTP GET method when conversion happens, and will retry when request fails (HTTP response code 5XX). In order to avoid receiving the same callbacks repeatedly, developers need to configure parameters on postback to receive the order_id returned by us.
 
@@ -46,7 +46,7 @@ title: How to integrate SDK
 
 ![configPostback](./images/configPostback.png)
 
-## User's currency exchange and exchange ratio Configuration
+## User's currency exchange and exchange ratio Configuration {#users-currency-exchange-and-exchange-ratio-configuration}
 
 Developers should configure the currency and currency conversion ratio before using the SDK, otherwise it will affect the normal test.
 
@@ -71,9 +71,9 @@ Where to set up:
 
 ![configCurrency](./images/configCurrency.png)
 
-## Android SDK Docking
+## Android SDK Docking {#android-sdk-docking}
 
-### Integration Documentation:
+### Integration Documentation {#integration-documentation}
 
 1. Add Maven repository to build.gradle in the root directory of your project
 
@@ -116,7 +116,7 @@ defaultConfig {
 }
 ```
 
-4. Add tools:replace="android:theme" to <application> in AndroidManifest.xml
+4. Add tools:replace="android:theme" to &lt;application&gt; in AndroidManifest.xml
 
 ```xml
 <application
@@ -177,12 +177,12 @@ If you have any questions about the SDK, please contact us:
 - Email: mkt@youmi.net
 - WhatsApp: +86 180 2853 9642
 
-### Precautions:
+### Precautions {#precautions}
 
 When enabling the SDK, userId (User's unique id) is mandatory. The user ID can be used for settlement, the related parameter is {aff_sub} in postback, which can be fired back to developer.
 
-## ICON of SDK advertising space
+## ICON of SDK advertising space {#icon-of-sdk-advertising-space}
 
 Provide 720*720 ICON
 
-<img src="./images/app_icon.png" alt="app_icon" width="200" />
+![app_icon](./images/app_icon.png){ width="200" }
