@@ -296,6 +296,6 @@ void dispose() {
 
 ## 9. Demo App Guide (See [SpinGo Demo](https://github.com/youmi-obg/Documentation/blob/main/AdWebViewFlutterDemo))
 
-![load ads](../images/AdWebViewDemoFlutter.png)
+![load ads](./images/AdWebViewDemoFlutter.png)
 
 On the home screen, users can input or paste a WebView URL. Once a valid URL is provided, tap the corresponding button (for `inappwebview` or `webview_flutter`) to load and display the WebView page accordingly.

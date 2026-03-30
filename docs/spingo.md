@@ -4,7 +4,7 @@ title: SpinGo Interactive Advertising Integration Guide
 
 # SpinGo Interactive Advertising Integration Guide
 
-![SpinGo Business Process](../images/spingo2.png)
+![SpinGo Business Process](./images/spingo2.png)
 
 ## 1. Integration Method
 
@@ -29,4 +29,4 @@ Parameter rules:
 
 - After the integration is live, relevant revenue data can be viewed in the developer backend at (https://offers.youmi.net/snapshot).
 
-![Developer Backend](../images/backend5.png)
+![Developer Backend](./images/backend5.png)

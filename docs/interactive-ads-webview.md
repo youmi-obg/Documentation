@@ -262,8 +262,8 @@ webView.loadUrl(url);
 
 ## 10. Note: Demo App Instructions (see [SpinGo Demo](https://github.com/youmi-obg/Documentation/blob/main/AdWebViewDemo))
 
-![load ads](../images/AdWebViewDemo2.png)
+![load ads](./images/AdWebViewDemo2.png)
 
 Support dynamic URL modification on the homepage: Enter/paste the WebView web page URL into the first input box. Also, support dynamically modifying the JS object name agreed with various interactive advertising platforms (corresponding to step 7). If not filled or handled, the default value is `android`. After entering the URL correctly, click the button to jump to the interface that loads WebView and display it.
 
-![load ads](../images/AdWebViewDemo.png)
+![load ads](./images/AdWebViewDemo.png)
