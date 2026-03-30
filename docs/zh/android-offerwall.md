@@ -8,13 +8,13 @@ title: 开发者对接 SDK 的具体步骤
 
 - [开发者对接 SDK 的具体步骤](#开发者对接-sdk-的具体步骤)
   - [目录](#目录)
-  - [注册开发者账号 {#sign-up-developer-account}](#注册开发者账号-sign-up-developer-account)
-  - [设置 Postback {#postback-configuration}](#设置-postback-postback-configuration)
-  - [配置用户兑换的货币以及兑换比例 {#users-currency-exchange-and-exchange-ratio-configuration}](#配置用户兑换的货币以及兑换比例-users-currency-exchange-and-exchange-ratio-configuration)
-  - [SDK 对接 {#android-sdk-docking}](#sdk-对接-android-sdk-docking)
-    - [对接文档：](#对接文档)
-    - [注意事项：](#注意事项)
-  - [SDK 广告位 ICON {#icon-of-sdk-advertising-space}](#sdk-广告位-icon-icon-of-sdk-advertising-space)
+  - [注册开发者账号](#sign-up-developer-account)
+  - [设置 Postback](#postback-configuration)
+  - [配置用户兑换的货币以及兑换比例](#users-currency-exchange-and-exchange-ratio-configuration)
+  - [SDK 对接](#android-sdk-docking)
+    - [对接文档](#android-sdk-docking-documentation)
+    - [注意事项](#android-sdk-docking-notice)
+  - [SDK 广告位 ICON](#icon-of-sdk-advertising-space)
 
 ## 注册开发者账号 {#sign-up-developer-account}
 
@@ -40,7 +40,7 @@ title: 开发者对接 SDK 的具体步骤
 | {aff_sub}  | 开发者传过来的唯一用户标识                                   |
 | {aff_sub2} | 广告结算金额 * 后台配置的结算比例                              |
 
-3. Postback 配置入口：
+3. Postback 配置入口
 
 [对外后台](https://offers.youmi.net/channel) - Tool - API
 
@@ -74,7 +74,7 @@ title: 开发者对接 SDK 的具体步骤
 
 ## SDK 对接 {#android-sdk-docking}
 
-### 对接文档：
+### 对接文档 {#android-sdk-docking-documentation}
 
 1. 在项目的根目录下的 build.gradle 中引入 mavenCentral 公用仓库
 
@@ -179,7 +179,7 @@ btn_test.setOnClickListener {
 - **Email**: mkt@youmi.net
 - **WhatsApp**: +86 180 2853 9642
 
-### 注意事项：
+### 注意事项 {#android-sdk-docking-notice}
 
 启用 SDK 的时候需要带上用户的唯一 id，userId。用户 ID 之后可用于结算，在 Postback 配置可以配置 {aff_sub} 给开发者回传。
 
@@ -187,4 +187,4 @@ btn_test.setOnClickListener {
 
 提供 720*720 的 ICON
 
-<img src="../../images/app_icon.png" alt="app_icon" width="200" />
+![app_icon](../images/app_icon.png){ width="200" }
