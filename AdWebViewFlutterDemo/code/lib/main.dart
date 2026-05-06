@@ -1,10 +1,11 @@
 import 'dart:async';
-
+import 'dart:io';
 import 'package:android_intent_plus/android_intent.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 void main() {
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Please input WebView url:'),
+            const Text('Please input your WebView url:'),
             const SizedBox(height: 20),
             Container(
               margin: const EdgeInsets.only(left: 20, right: 20),
@@ -67,13 +68,13 @@ class _HomePageState extends State<HomePage> {
               child: const Text('Jump to WebView(InAppWebView)'),
               onPressed: _isButtonEnable
                   ? () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => InAppWebViewExample(
-                                _textUrlController.text)),
-                      );
-                    }
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          InAppWebViewExample(_textUrlController.text)),
+                );
+              }
                   : null,
             ),
             const SizedBox(height: 60),
@@ -84,8 +85,8 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => WebViewExample(
-                          _textUrlController.text)),
+                      builder: (context) =>
+                          WebViewExample(_textUrlController.text)),
                 );
               }
                   : null,
@@ -141,16 +142,14 @@ class WebViewExampleState extends State<WebViewExample> {
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(NavigationDelegate(
           onPageFinished: (String url) {
-            print("onPageFinished: $url");
+            debugPrint("onPageFinished: $url");
             isGoingBack = false;
           },
           onPageStarted: (String url) {
             currentUrl = url;
-            print("onPageStarted: $url");
+            debugPrint("onPageStarted: $url");
           },
-          onUrlChange: (UrlChange change) {
-
-          },
+          onUrlChange: (UrlChange change) {},
           //H5通过URL传递数据给APP,Url会被NavigationDelegate捕捉（涉及到跳转与否）
           onNavigationRequest: (NavigationRequest request) async {
             mOverrideLegalWebViewUrl = widget.linkUrl;
@@ -162,47 +161,52 @@ class WebViewExampleState extends State<WebViewExample> {
                 request.url.startsWith("https://play.google.com/store/") ||
                 request.url.startsWith("http://play.google.com/store/")) {
               if (request.url.startsWith("market://details?")) {
-                openMarket("com.android.vending", request.url);
+                //openMarket("com.android.vending", request.url);
+                launchGooglePlay(request.url);
               } else {
-                openBrowser(request.url);
+                //openBrowser(request.url);
+                openH5Url(request.url);
               }
               return NavigationDecision.prevent;
             } else if (!request.url.startsWith("http://") &&
                 !request.url.startsWith("https://")) {
               if (request.url.startsWith("android-app://") ||
                   request.url.startsWith("intent://")) {
-                openBrowser(mOverrideLegalWebViewUrl);
+                openH5Url(mOverrideLegalWebViewUrl);
                 if (await _controller.canGoBack()) {
                   _controller.goBack();
                 }
               }
               return NavigationDecision.prevent;
-            } else if (request.url.contains("lz_open_browser=1")) {
-              openBrowser(request.url);
-              return NavigationDecision.prevent;
             } else if (request.url.contains(".apk")) {
-              openByScheme(request.url);
+              //openByScheme(request.url);
+              openH5Url(request.url);
               return NavigationDecision.prevent;
             } else {
-              if(isGoingBack) {
-                isGoingBack = false;
-                return NavigationDecision.prevent;
-              }
+              // if (isGoingBack) {
+              //   isGoingBack = false;
+              //   return NavigationDecision.prevent;
+              // }
               isGoingBack = false;
               return NavigationDecision.navigate;
             }
           }))
       ..addJavaScriptChannel("openBrowser",
           onMessageReceived: (javaScriptMessage) {
-        print(javaScriptMessage.message);
-        openBrowserFromJs(javaScriptMessage.message);
+            debugPrint(javaScriptMessage.message);
+            //openBrowserFromJs(javaScriptMessage.message);
+            openH5Url(javaScriptMessage.message);
+          })
+      ..addJavaScriptChannel("closeWebview", onMessageReceived: (javaScriptMessage) {
+        debugPrint('webview flutter close web view');
+        Navigator.of(context).pop();
+        //Navigator.maybePop(context);
       })
       ..loadRequest(Uri.parse(widget.linkUrl));
   }
 
   @override
   Widget build(BuildContext context) {
-
     return WillPopScope(
       onWillPop: _handleBackPress,
       child: Scaffold(
@@ -226,28 +230,68 @@ class WebViewExampleState extends State<WebViewExample> {
     return true; // 允许退出 App
   }
 
-  static const MethodChannel _channel = MethodChannel("openAppUtils");
+  // static const MethodChannel _channel = MethodChannel("openAppUtils");
 
   bool isGoingBack = false;
   String currentUrl = "";
   String mOverrideLegalWebViewUrl = "";
 
-  void openMarket(String packageName, String marketPath) async {
-    //传递一个方法名，即调用Android的原生方法
-    await _channel.invokeMethod(
-        "openMarket", {'packageName': packageName, 'marketPath': marketPath});
+  // void openMarket(String packageName, String marketPath) async {
+  //   //传递一个方法名，即调用Android的原生方法
+  //   await _channel.invokeMethod(
+  //       "openMarket", {'packageName': packageName, 'marketPath': marketPath});
+  // }
+
+  // void openBrowser(String url) async {
+  //   await _channel.invokeMethod("openBrowser", {'url': url});
+  // }
+  //
+  // void openByScheme(String url) async {
+  //   await _channel.invokeMethod("openByScheme", {'url': url});
+  // }
+  //
+  // void openBrowserFromJs(String url) async {
+  //   await _channel.invokeMethod("openBrowserFromJs", {'url': url});
+  // }
+
+  void launchGooglePlay(String fullUrl) {
+    // 1. 解析传入的完整 URL
+    final Uri originalUri = Uri.parse(fullUrl);
+
+    // 2. 提取参数中的 'id' 值（packageName）
+    final String? packageName = originalUri.queryParameters['id'];
+
+    if (packageName == null || packageName.isEmpty) {
+      print('无法从 URL 中解析出包名');
+      return;
+    }
+
+    final AndroidIntent intent = AndroidIntent(
+      action: 'android.intent.action.VIEW',
+      data: 'market://details?id=$packageName',
+      package: 'com.android.vending', // 强制指定 Google Play 的包名
+    );
+    intent.launch();
   }
 
-  void openBrowser(String url) async {
-    await _channel.invokeMethod("openBrowser", {'url': url});
-  }
+  void openH5Url(String url) async {
+    if (Platform.isAndroid) {
+      // 安卓：尝试通过 Chrome 的 URL Scheme 打开
+      final chromeUrl = Uri.parse("googlechrome://navigate?url=$url");
 
-  void openByScheme(String url) async {
-    await _channel.invokeMethod("openByScheme", {'url': url});
-  }
-
-  void openBrowserFromJs(String url) async {
-    await _channel.invokeMethod("openBrowserFromJs", {'url': url});
+      if (await canLaunchUrl(chromeUrl)) {
+        await launchUrl(chromeUrl, mode: LaunchMode.externalApplication);
+      } else {
+        // 如果未安装 Chrome，回退到普通方式（打开系统默认浏览器）
+        await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+      }
+    } else if (Platform.isIOS) {
+      // iOS：直接使用默认浏览器打开
+      final uri = Uri.parse(url);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    }
   }
 }
 
@@ -269,12 +313,11 @@ class InAppWebViewExampleState extends State<InAppWebViewExample> {
       body: WillPopScope(
         onWillPop: _handleBackPress,
         child: InAppWebView(
-          initialUrlRequest: URLRequest(url: Uri.parse(widget.linkUrl)),
+          initialUrlRequest:
+          URLRequest(url: WebUri.uri(Uri.parse(widget.linkUrl))),
           initialOptions: InAppWebViewGroupOptions(
             crossPlatform: InAppWebViewOptions(
-                useShouldOverrideUrlLoading: true,
-              javaScriptEnabled: true
-            ),
+                useShouldOverrideUrlLoading: true, javaScriptEnabled: true),
           ),
           onWebViewCreated: (controller) {
             _inAppWebViewController = controller;
@@ -283,60 +326,68 @@ class InAppWebViewExampleState extends State<InAppWebViewExample> {
               handlerName: "openBrowser",
               callback: (args) {
                 // 处理 H5 调用
-                print('H5 called Flutter with: $args');
-                openBrowserFromJs(args[0].toString());
+                debugPrint('H5 called Flutter with open browser: $args');
+                //openBrowserFromJs(args[0].toString());
+                openH5Url(args[0].toString());
+              },
+            );
+            controller.addJavaScriptHandler(
+              handlerName: "closeWebview",
+              callback: (args) {
+                // 处理 H5 调用
+                debugPrint('H5 called Flutter to close');
+                Navigator.of(context).pop();
+                //Navigator.maybePop(context);
               },
             );
           },
-          onLoadStart: (controller,url) {
+          onLoadStart: (controller, url) {
             currentUrl = url.toString();
-            print("onStart: $url");
+            debugPrint("onStart: $url");
           },
-          onLoadStop: (controller,url) {
+          onLoadStop: (controller, url) {
             isGoingBack = false;
-            print("onStop: $url");
+            debugPrint("onStop: $url");
           },
           shouldOverrideUrlLoading: (controller, navigationAction) async {
             final url = navigationAction.request.url.toString();
-            print("over url: $url");
-                    if (url.startsWith("http") ||
-                       url.startsWith("https")) {
-                      mOverrideLegalWebViewUrl = url;
-                    }
-                    if (url.startsWith("market:") ||
-                        url.startsWith("https://play.google.com/store/") ||
-                        url.startsWith("http://play.google.com/store/")) {
-
-                      if (url.startsWith("market://details?")) {
-                        openMarket("com.android.vending", url);
-                      } else {
-                        openBrowser(url);
-                      }
-                      return NavigationActionPolicy.CANCEL;
-                    } else if (!url.startsWith("http://") &&
-                        !url.startsWith("https://")) {
-                      if (url.startsWith("android-app://") ||
-                          url.startsWith("intent://")) {
-                        openBrowser(mOverrideLegalWebViewUrl);
-                        if (await _inAppWebViewController.canGoBack()) {
-                          _inAppWebViewController.goBack();
-                        }
-                      }
-                      return NavigationActionPolicy.CANCEL;
-                    } else if (url.contains("lz_open_browser=1")) {
-                      openBrowser(url);
-                      return NavigationActionPolicy.CANCEL;
-                    } else if (url.contains(".apk")) {
-                      openByScheme(url);
-                      return NavigationActionPolicy.CANCEL;
-                    } else {
-                      if(isGoingBack) {
-                        isGoingBack = false;
-                        return NavigationActionPolicy.CANCEL;
-                      }
-                      isGoingBack = false;
-                      return NavigationActionPolicy.ALLOW;
-                    }
+            debugPrint("over url: $url");
+            if (url.startsWith("http") || url.startsWith("https")) {
+              mOverrideLegalWebViewUrl = url;
+            }
+            if (url.startsWith("market:") ||
+                url.startsWith("https://play.google.com/store/") ||
+                url.startsWith("http://play.google.com/store/")) {
+              if (url.startsWith("market://details?")) {
+                //openMarket("com.android.vending", url);
+                launchGooglePlay(url);
+              } else {
+                //openBrowser(url);
+                openH5Url(url);
+              }
+              return NavigationActionPolicy.CANCEL;
+            } else if (!url.startsWith("http://") &&
+                !url.startsWith("https://")) {
+              if (url.startsWith("android-app://") ||
+                  url.startsWith("intent://")) {
+                openH5Url(mOverrideLegalWebViewUrl);
+                if (await _inAppWebViewController.canGoBack()) {
+                  _inAppWebViewController.goBack();
+                }
+              }
+              return NavigationActionPolicy.CANCEL;
+            } else if (url.contains(".apk")) {
+              //openByScheme(url);
+              openH5Url(url);
+              return NavigationActionPolicy.CANCEL;
+            } else {
+              // if (isGoingBack) {
+              //   isGoingBack = false;
+              //   return NavigationActionPolicy.CANCEL;
+              // }
+              isGoingBack = false;
+              return NavigationActionPolicy.ALLOW;
+            }
           },
         ),
       ),
@@ -355,27 +406,96 @@ class InAppWebViewExampleState extends State<InAppWebViewExample> {
     return true; // 允许退出 App
   }
 
-  static const MethodChannel _channel = MethodChannel("openAppUtils");
+  // static const MethodChannel _channel = MethodChannel("openAppUtils");
 
   bool isGoingBack = false;
   String currentUrl = "";
   String mOverrideLegalWebViewUrl = "";
 
-  void openMarket(String packageName, String marketPath) async {
-    //传递一个方法名，即调用Android的原生方法
-    await _channel.invokeMethod(
-        "openMarket", {'packageName': packageName, 'marketPath': marketPath});
+  // void openMarket(String packageName, String marketPath) async {
+  //   //传递一个方法名，即调用Android的原生方法
+  //   await _channel.invokeMethod(
+  //       "openMarket", {'packageName': packageName, 'marketPath': marketPath});
+  // }
+
+  // void openBrowser(String url) async {
+  //   await _channel.invokeMethod("openBrowser", {'url': url});
+  // }
+  //
+  // void openByScheme(String url) async {
+  //   await _channel.invokeMethod("openByScheme", {'url': url});
+  // }
+  //
+  // void openBrowserFromJs(String url) async {
+  //   await _channel.invokeMethod("openBrowserFromJs", {'url': url});
+  // }
+
+  void openStoreFromUrl(String fullUrl) async {
+    // 1. 解析传入的完整 URL
+    final Uri originalUri = Uri.parse(fullUrl);
+
+    // 2. 提取参数中的 'id' 值（packageName）
+    final String? packageName = originalUri.queryParameters['id'];
+
+    if (packageName == null || packageName.isEmpty) {
+      print('无法从 URL 中解析出包名');
+      return;
+    }
+
+    // 3. 构造 market 协议和网页协议
+    final Uri marketUri = Uri.parse('market://details?id=$packageName');
+    final Uri webUri = Uri.parse('https://google.com');
+
+    try {
+      // 优先尝试唤起商店应用
+      if (await canLaunchUrl(marketUri)) {
+        await launchUrl(marketUri, mode: LaunchMode.externalApplication);
+      } else {
+        // 备选：使用浏览器打开
+        await launchUrl(webUri, mode: LaunchMode.externalApplication);
+      }
+    } catch (e) {
+      print('跳转失败: $e');
+    }
   }
 
-  void openBrowser(String url) async {
-    await _channel.invokeMethod("openBrowser", {'url': url});
+  void launchGooglePlay(String fullUrl) {
+    // 1. 解析传入的完整 URL
+    final Uri originalUri = Uri.parse(fullUrl);
+
+    // 2. 提取参数中的 'id' 值（packageName）
+    final String? packageName = originalUri.queryParameters['id'];
+
+    if (packageName == null || packageName.isEmpty) {
+      print('无法从 URL 中解析出包名');
+      return;
+    }
+
+    final AndroidIntent intent = AndroidIntent(
+      action: 'android.intent.action.VIEW',
+      data: 'market://details?id=$packageName',
+      package: 'com.android.vending', // 强制指定 Google Play 的包名
+    );
+    intent.launch();
   }
 
-  void openByScheme(String url) async {
-    await _channel.invokeMethod("openByScheme", {'url': url});
-  }
+  void openH5Url(String url) async {
+    if (Platform.isAndroid) {
+      // 安卓：尝试通过 Chrome 的 URL Scheme 打开
+      final chromeUrl = Uri.parse("googlechrome://navigate?url=$url");
 
-  void openBrowserFromJs(String url) async {
-    await _channel.invokeMethod("openBrowserFromJs", {'url': url});
+      if (await canLaunchUrl(chromeUrl)) {
+        await launchUrl(chromeUrl, mode: LaunchMode.externalApplication);
+      } else {
+        // 如果未安装 Chrome，回退到普通方式（打开系统默认浏览器）
+        await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+      }
+    } else if (Platform.isIOS) {
+      // iOS：直接使用默认浏览器打开
+      final uri = Uri.parse(url);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    }
   }
 }
