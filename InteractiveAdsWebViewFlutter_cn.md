@@ -92,30 +92,23 @@ Widget build(BuildContext context) {
               url.startsWith("https://play.google.com/store/") ||
               url.startsWith("http://play.google.com/store/")) {
             if (url.startsWith("market://details?")) {
-              openMarket("com.android.vending", url);
+              launchGooglePlay(url);
             } else {
-              openBrowser(url);
+              openH5Url(url);
             }
             return NavigationActionPolicy.CANCEL;
           } else if (!url.startsWith("http") && !url.startsWith("https")) {
             if (url.startsWith("android-app://") || url.startsWith("intent://")) {
-              openBrowser(mOverrideLegalWebViewUrl);
+              openH5Url(mOverrideLegalWebViewUrl);
               if (await _inAppWebViewController.canGoBack()) {
                 _inAppWebViewController.goBack();
               }
             }
             return NavigationActionPolicy.CANCEL;
-          } else if (url.contains("lz_open_browser=1")) {
-            openBrowser(url);
-            return NavigationActionPolicy.CANCEL;
           } else if (url.contains(".apk")) {
-            openByScheme(url);
+            openH5Url(url);
             return NavigationActionPolicy.CANCEL;
           } else {
-            if (isGoingBack) {
-              isGoingBack = false;
-              return NavigationActionPolicy.CANCEL;
-            }
             isGoingBack = false;
             return NavigationActionPolicy.ALLOW;
           }
@@ -152,30 +145,23 @@ void initState() {
             request.url.startsWith("https://play.google.com/store/") ||
             request.url.startsWith("http://play.google.com/store/")) {
           if (request.url.startsWith("market://details?")) {
-            openMarket("com.android.vending", request.url);
+            launchGooglePlay(request.url);
           } else {
-            openBrowser(request.url);
+            openH5Url(request.url);
           }
           return NavigationDecision.prevent;
         } else if (!request.url.startsWith("http") && !request.url.startsWith("https")) {
           if (request.url.startsWith("android-app://") || request.url.startsWith("intent://")) {
-            openBrowser(mOverrideLegalWebViewUrl);
+            openH5Url(mOverrideLegalWebViewUrl);
             if (await _controller.canGoBack()) {
               _controller.goBack();
             }
           }
           return NavigationDecision.prevent;
-        } else if (request.url.contains("lz_open_browser=1")) {
-          openBrowser(request.url);
-          return NavigationDecision.prevent;
         } else if (request.url.contains(".apk")) {
-          openByScheme(request.url);
+          openH5Url(request.url);
           return NavigationDecision.prevent;
         } else {
-          if (isGoingBack) {
-            isGoingBack = false;
-            return NavigationDecision.prevent;
-          }
           isGoingBack = false;
           return NavigationDecision.navigate;
         }
@@ -184,35 +170,59 @@ void initState() {
       print(javaScriptMessage.message);
       openBrowserFromJs(javaScriptMessage.message);
     })
+    ..addJavaScriptChannel("closeWebview", onMessageReceived: (javaScriptMessage) {
+      debugPrint('webview flutter close web view');
+      Navigator.of(context).pop();
+    })
     ..loadRequest(Uri.parse(widget.linkUrl));
 }
 ```
 
-### 原生方法调用说明
-
-为了便于处理打开浏览器、跳转Google商店或下载APK等操作，这里通过 `MethodChannel` 调用了自定义的安卓原生方法，您也可以根据需要直接使用Flutter方式实现类似跳转逻辑。
+### 方法调用说明
+备注：这里的打开外部浏览器/谷歌商店、跳转下载apk等操作方法如下：
+添加依赖android_intent_plus: ^6.0.0
 
 ```dart
-static const MethodChannel _channel = MethodChannel("openAppUtils");
+void launchGooglePlay(String fullUrl) {
+    // 1. 解析传入的完整 URL
+    final Uri originalUri = Uri.parse(fullUrl);
 
-void openMarket(String packageName, String marketPath) async {
-  await _channel.invokeMethod("openMarket", {'packageName': packageName, 'marketPath': marketPath});
-}
+    // 2. 提取参数中的 'id' 值（packageName）
+    final String? packageName = originalUri.queryParameters['id'];
 
-void openBrowser(String url) async {
-  await _channel.invokeMethod("openBrowser", {'url': url});
-}
+    if (packageName == null || packageName.isEmpty) {
+      print('无法从 URL 中解析出包名');
+      return;
+    }
 
-void openByScheme(String url) async {
-  await _channel.invokeMethod("openByScheme", {'url': url});
-}
+    final AndroidIntent intent = AndroidIntent(
+      action: 'android.intent.action.VIEW',
+      data: 'market://details?id=$packageName',
+      package: 'com.android.vending', // 强制指定 Google Play 的包名
+    );
+    intent.launch();
+  }
 
-void openBrowserFromJs(String url) async {
-  await _channel.invokeMethod("openBrowserFromJs", {'url': url});
-}
+  void openH5Url(String url) async {
+    if (Platform.isAndroid) {
+      // 安卓：尝试通过 Chrome 的 URL Scheme 打开
+      final chromeUrl = Uri.parse("googlechrome://navigate?url=$url");
+
+      if (await canLaunchUrl(chromeUrl)) {
+        await launchUrl(chromeUrl, mode: LaunchMode.externalApplication);
+      } else {
+        // 如果未安装 Chrome，回退到普通方式（打开系统默认浏览器）
+        await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+      }
+    } else if (Platform.isIOS) {
+      // iOS：直接使用默认浏览器打开
+      final uri = Uri.parse(url);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    }
+  }
 ```
-
-具体注册方式和判断逻辑可参考 demo 中 android 模块下 `OpenAppUtilsPlugin`。
 
 ## 6. 正确处理网页返回
 
@@ -260,11 +270,20 @@ controller.addJavaScriptHandler(
     openBrowserFromJs(args[0].toString());
   },
 );
+
+controller.addJavaScriptHandler(
+  handlerName: "closeWebview",
+  callback: (args) {
+    debugPrint('H5 called Flutter to close');
+    Navigator.of(context).pop();
+  },
+);
+
 ```
 
 ### WebView Flutter：
 
-参考步骤5中 `.addJavaScriptChannel("openBrowser")` 配置。
+参考步骤5中 `.addJavaScriptChannel("openBrowser")、.addJavaScriptChannel("closeWebview")` 配置。
 
 ## 8. 界面销毁时清除WebView缓存资源
 
