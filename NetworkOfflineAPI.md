@@ -201,6 +201,11 @@ Multiple callbacks related to the same conversion is possible, so it's receiver'
 | {package}    | Unique identifier for mobile applications. The package name of this offer | No |
 | {is_settle}    | If it is a settlement event is_ settle=1, if it is a non settlement event is_ settle=0 | No |
 | {event_name}    | Only when the advertiser calls back the event name will postback bring the event name | No |
+| {blocked_reason}    | Primary fraud interception top-level category, only carries value in Rejected Callback URL. It represents the main type of invalid conversion blocked by anti-fraud system, such as bots, ctit_anomalies, install_hijacking, click_flood. Empty string for normal settled events. | No |
+| {blocked_sub_reason}    | Secondary refined interception sub-type under the main blocked_reason, only carries value in Rejected Callback URL. It describes detailed fraud behavior classification of the same blocking category. Empty string for normal settled events. | No |
+| {blocked_reason_value}    | Supplementary evidence value for locating fraud traffic source, only carries value in Rejected Callback URL. It stores abnormal duration, blacklisted site ID, custom risk control rule name and other identification information. Empty string for normal settled events. | No |
+
+The three blocked-related macros ({blocked_reason}, {blocked_sub_reason}, {blocked_reason_value}) only take effect in Rejected Callback URL.
 
 ## Callback IP Whitelist
 
