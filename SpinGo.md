@@ -12,7 +12,7 @@ Parameter rules:
 - For WebView integration, it is recommended to refer to the following documentation for necessary adjustments to accommodate various ad jump scenarios:
   - [Interactive Ads Android WebView Integration](https://github.com/youmi-obg/Documentation/blob/main/InteractiveAdsWebView.md)
   - [Interactive Ads Flutter WebView Integration](https://github.com/youmi-obg/Documentation/blob/main/InteractiveAdsWebviewFlutter.md)
-  - [Interactive Ads iOS WebView Integration](https://github.com/youmi-obg/Documentation/blob/main/AdWebviewIOSDemo/README.md)
+  - [Interactive Ads iOS WebView Integration](https://github.com/youmi-obg/Documentation/blob/main/InteractiveAdsWebViewIOS.md)
 
 ## 2. Ad Space Selection
 
