@@ -1,8 +1,10 @@
+# Interactive Ads IOS WebView Integration
+
 ## 1. Configure HTTP Support
 
-Configure in the project's info.plist
+Configure in the project's info.plist：
 
-```
+```info.plist
 <key>NSAppTransportSecurity</key>
 <dict>
     <key>NSAllowsArbitraryLoads</key>
@@ -12,8 +14,9 @@ Configure in the project's info.plist
 
 ## 2. Initialize Webview Configuration
 
-Swift
-```
+Swift：
+
+```swift
 let config = WKWebViewConfiguration()
 // Check version and enable JavaScript support
 if #available(iOS 14.0, *) {
@@ -27,8 +30,9 @@ if #available(iOS 14.0, *) {
 let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), configuration: config)
 ```
 
-Objective-C
-```
+Object-c：
+
+```object-c
 WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
 // Check version and enable JavaScript support
 if (@available(iOS 14.0, *)) {
@@ -44,7 +48,7 @@ WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, self.view
 
 ## 3. Load Page
 
-```
+```load page
 // URL needs to be replaced with actual address
 NSString *urlStr = @"https://example.com";
 NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
@@ -114,21 +118,26 @@ window.addEventListener('message', function(event) {
 ## 5. Common Issues and Solutions
 
 ### 5.1 White Screen Issue
-
+```
 1. Check if the network is normal
 2. Check if the URL is correct
 3. Check if ATS configuration is correct
 4. Check if JavaScript is enabled
+```
 
 ### 5.2 JSBridge Not Working
 
+```
 1. Check if the registration name matches
 2. Check if the message handler is properly added
 3. Check if the frontend calling method is correct
 4. Check if the WKScriptMessageHandler protocol is correctly implemented
+```
 
 ### 5.3 Page Loading Slow
 
+```
 1. Check network speed
 2. Optimize page resources
 3. Consider using local caching
+```
