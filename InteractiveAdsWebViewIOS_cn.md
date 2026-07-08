@@ -56,8 +56,6 @@ webView.navigationDelegate = self;
 
 2.如果拦截命中自定义的特殊协议（如 spingo://），则进入自定义逻辑
 
-示例代码
-
 Swift：
 
 ```swift
@@ -148,8 +146,6 @@ decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
 ## 4. 配置页面返回按钮逻辑
 
 自定义配置 NavigationBar 的返回按钮，如果 Webview 可以返回上一页，点击返回按钮时调用 webview goBack 方法，否则关闭当前页面
-
-示例代码
 
 Swift：
 
