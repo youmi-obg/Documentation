@@ -61,7 +61,7 @@ NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr
 
 #### iOS Native Registration Method
 
-##### Swift
+Swift:
 ```
 // Register method for frontend call
 webView.configuration.userContentController.add(self, name: "nativeFunction")
@@ -79,7 +79,7 @@ func userContentController(_ userContentController: WKUserContentController, did
 }
 ```
 
-##### Objective-C
+Objective-C:
 ```
 // Register method for frontend call
 [webView.configuration.userContentController addScriptMessageHandler:self name:@"nativeFunction"];
