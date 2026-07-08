@@ -1,20 +1,22 @@
-#### 1.配置 HTTP 支持
+# 互动广告IOS WebView对接
 
-在项目的 info.plist 中配置
+## 1. 配置 HTTP 支持
 
-```
+在项目的 info.plist 中配置：
+
+```info.plist
 <key>NSAppTransportSecurity</key>
 <dict>
     <key>NSAllowsArbitraryLoads</key>
     <true/>
 </dict>
-
 ```
 
-#### 2.初始化 Webview 配置项
+## 2. 初始化 Webview 配置项
 
-Swift
-```
+Swift：
+
+```swift
 let config = WKWebViewConfiguration()
 // 根据版本判判断，加入 JS 支持
 if #available(iOS 14.0, *) {
@@ -30,8 +32,9 @@ let webView = WKWebView(frame: .zero, configuration: config)
 webView.navigationDelegate = self
 ```
 
-Object-C
-```
+Object-c：
+
+```object-c
 WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
 // 根据版本判判断，加入 JS 支持
 if (@available(iOS 14.0, *)) {
@@ -47,16 +50,15 @@ WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:c
 webView.navigationDelegate = self;
 ```
 
-#### 3.配置 Webview 拦截
+## 3. 配置 Webview 拦截
 
 1.拦截所有的非 https/http 协议的请求，并通过浏览器打开
 
 2.如果拦截命中自定义的特殊协议（如 spingo://），则进入自定义逻辑
 
-示例代码
+Swift：
 
-Swift
-```
+```swift
 // 实现 WKNavigationDelegate 回调方法，在发起导航时拦截
 func webView(_ webView: WKWebView, decidePolicyFor navigationAction:WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) ->Void) {
     guard let url = navigationAction.request.url else {
@@ -92,8 +94,9 @@ private func extractRedirect(from url: URL) -> URL? {
 }
 ```
 
-Object-C
-```
+Object-c：
+
+```object-c
 // 实现 WKNavigationDelegate 回调方法，在发起导航时拦截
 - (void)webView:(WKWebView *)webView
 decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction
@@ -140,14 +143,13 @@ decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
 }
 ```
 
-#### 4.配置页面返回按钮逻辑
+## 4. 配置页面返回按钮逻辑
 
 自定义配置 NavigationBar 的返回按钮，如果 Webview 可以返回上一页，点击返回按钮时调用 webview goBack 方法，否则关闭当前页面
 
-示例代码
+Swift：
 
-Swift 
-```
+```swift
 // 设置返回按钮
 navigationItem.leftBarButtonItem = UIBarButtonItem(title: "返回", style: .plain, target: self, action: #selector(handleBackButton))
 
@@ -159,11 +161,11 @@ navigationItem.leftBarButtonItem = UIBarButtonItem(title: "返回", style: .plai
         navigationController?.popViewController(animated: true)
     }
 }
-
 ```
 
-Object-C
-```
+Object-c：
+
+```object-c
 self.navigationItem.leftBarButtonItem =
 [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(handleBackButton)];
 
